@@ -25,8 +25,7 @@ namespace NHibernate.Event.Default
 			ICollectionPersister persister = session.Factory.GetCollectionPersister(type.Role);
 
 			object collectionKey = ExtractCollectionKeyFromOwner(persister);
-			IPersistentCollection wrapper = collection as IPersistentCollection;
-			if (wrapper != null)
+			if (collection is IPersistentCollection wrapper)
 			{
 				if (wrapper.SetCurrentSession(session))
 				{

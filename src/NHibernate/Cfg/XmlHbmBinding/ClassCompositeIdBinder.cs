@@ -97,7 +97,6 @@ namespace NHibernate.Cfg.XmlHbmBinding
 			foreach (object item in idSchema.Items ?? System.Array.Empty<object>())
 			{
 				var keyManyToOneSchema = item as HbmKeyManyToOne;
-				var keyPropertySchema = item as HbmKeyProperty;
 
 				if (keyManyToOneSchema != null)
 				{
@@ -112,7 +111,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 
 					compositeId.AddProperty(property);
 				}
-				else if (keyPropertySchema != null)
+				else if (item is HbmKeyProperty keyPropertySchema)
 				{
 					var value = new SimpleValue(compositeId.Table);
 
@@ -245,10 +244,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 				value.SetTypeUsingReflection(parentClass.AssemblyQualifiedName, propertyName,
 				                             keyPropertySchema.access ?? mappings.DefaultAccess);
 			}
-
-			// This is done here 'cos we might only know the type here (ugly!)
-			var toOne = value as ToOne;
-			if (toOne != null)
+			if (value is ToOne toOne)
 			{
 				string propertyRef = toOne.ReferencedPropertyName;
 				if (propertyRef != null)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -442,17 +442,14 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
                 _children = new List<IASTNode>(); 
             }
 
-            IASTNode node = t as IASTNode;
-
-            if (node != null)
+            if (t is IASTNode node)
             {
                 _children.Insert(startChildIndex, (IASTNode)t);
             }
             else
             {
-                IEnumerable list = t as IEnumerable;
 
-                if (list != null)
+                if (t is IEnumerable list)
                 {
                     int i = 0;
                     foreach (IASTNode entry in list)

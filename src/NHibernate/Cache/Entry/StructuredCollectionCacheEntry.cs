@@ -16,9 +16,7 @@ namespace NHibernate.Cache.Entry
 
 		public virtual object Destructure(object item, ISessionFactoryImplementor factory)
 		{
-			var collection = item as IEnumerable;
-			var objects = collection != null
-							  ? collection.Cast<object>().ToArray()
+			var objects = item is IEnumerable collection							  ? collection.Cast<object>().ToArray()
 							  : Array.Empty<object>();
 			return new CollectionCacheEntry {State = objects};
 		}

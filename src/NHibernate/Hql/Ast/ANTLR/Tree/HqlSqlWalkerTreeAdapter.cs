@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Antlr.Runtime;
 
 namespace NHibernate.Hql.Ast.ANTLR.Tree
@@ -175,9 +175,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		public override object DupNode(object t)
 		{
-			var node = t as IASTNode;
 
-			if (node != null)
+			if (t is IASTNode node)
 			{
 				var dupped = (IASTNode) Create(node.Token);
 
@@ -191,16 +190,13 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private void Initialise(object node)
 		{
-			var initableNode = node as IInitializableNode;
 
-			if (initableNode != null)
+			if (node is IInitializableNode initableNode)
 			{
 				initableNode.Initialize(_walker);
 			}
 
-			var sessionNode = node as ISessionFactoryAwareNode;
-
-			if (sessionNode != null)
+			if (node is ISessionFactoryAwareNode sessionNode)
 			{
 				sessionNode.SessionFactory = _walker.SessionFactoryHelper.Factory;
 			}

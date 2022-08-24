@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using NHibernate.Linq.Visitors;
 
 namespace NHibernate.Linq.Expressions
@@ -9,8 +9,7 @@ namespace NHibernate.Linq.Expressions
 
 		protected sealed override Expression Accept(ExpressionVisitor visitor)
 		{
-			var nhVisitor = visitor as NhExpressionVisitor;
-			if (nhVisitor != null)
+			if (visitor is NhExpressionVisitor nhVisitor)
 				return Accept(nhVisitor);
 
 			return base.Accept(visitor);

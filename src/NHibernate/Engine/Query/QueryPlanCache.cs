@@ -88,8 +88,7 @@ namespace NHibernate.Engine.Query
 		private static QueryExpressionPlan CopyIfRequired(QueryExpressionPlan plan, IQueryExpression queryExpression)
 		{
 			var planExpression = plan.QueryExpression as NhLinqExpression;
-			var expression = queryExpression as NhLinqExpression;
-			if (planExpression != null && expression != null)
+			if (planExpression != null && queryExpression is NhLinqExpression expression)
 			{
 				//NH-3413
 				//Here we have to use original expression.

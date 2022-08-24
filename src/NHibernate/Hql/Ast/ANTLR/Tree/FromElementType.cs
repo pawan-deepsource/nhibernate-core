@@ -35,9 +35,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			_fromElement = fromElement;
 			_persister = persister;
 			_entityType = entityType;
-
-			var queryable = persister as IQueryable;
-			if (queryable != null)
+			if (persister is IQueryable queryable)
 				fromElement.Text = queryable.TableName + " " + fromElement.TableAlias;
 		}
 
@@ -114,10 +112,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 				{
 					return _joinSequence;
 				}
-
-				// Class names in the FROM clause result in a JoinSequence (the old FromParser does this).
-				var joinable = _persister as IJoinable;
-				if (joinable != null)
+				if (_persister is IJoinable joinable)
 				{
 					// the delete and update statements created here will never be executed when IsMultiTable is true,
 					// only the where clause will be used by MultiTableUpdateExecutor/MultiTableDeleteExecutor. In that case

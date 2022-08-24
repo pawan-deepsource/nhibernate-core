@@ -87,9 +87,8 @@ namespace NHibernate.DomainModel.Northwind.Entities
 
         public override bool Equals(object obj)
         {
-            var address = obj as Address;
 
-            if (address != null)
+            if (obj is Address address)
             {
                 return
                     _street == address.Street &&

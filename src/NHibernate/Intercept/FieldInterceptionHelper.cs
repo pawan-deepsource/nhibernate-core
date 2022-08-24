@@ -42,8 +42,7 @@ namespace NHibernate.Intercept
 			ISet<string> unwrapProxyFieldNames,
 			ISessionImplementor session)
 		{
-			var fieldInterceptorAccessor = entity as IFieldInterceptorAccessor;
-			if (fieldInterceptorAccessor != null)
+			if (entity is IFieldInterceptorAccessor fieldInterceptorAccessor)
 			{
 				var fieldInterceptorImpl = new DefaultFieldInterceptor(session, uninitializedFieldNames, unwrapProxyFieldNames, entityName, mappedClass);
 				fieldInterceptorAccessor.FieldInterceptor = fieldInterceptorImpl;

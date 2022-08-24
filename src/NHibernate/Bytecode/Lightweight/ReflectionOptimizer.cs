@@ -233,10 +233,7 @@ namespace NHibernate.Bytecode.Lightweight
 				// queue up the array storage location for the value
 				il.Emit(OpCodes.Ldloc, dataLocal);
 				il.Emit(OpCodes.Ldc_I4, i);
-
-				// get the value...
-				var optimizableGetter = getter as IOptimizableGetter;
-				if (optimizableGetter != null)
+				if (getter is IOptimizableGetter optimizableGetter)
 				{
 					// using the getter's emitted IL code
 					il.Emit(OpCodes.Ldloc, thisLocal);
@@ -289,9 +286,7 @@ namespace NHibernate.Bytecode.Lightweight
 				// get the member accessor
 				ISetter setter = setters[i];
 
-				var optimizableSetter = setter as IOptimizableSetter;
-
-				if (optimizableSetter != null)
+				if (setter is IOptimizableSetter optimizableSetter)
 				{
 					// load 'this'
 					il.Emit(OpCodes.Ldloc, thisLocal);

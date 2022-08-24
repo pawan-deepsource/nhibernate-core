@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using Remotion.Linq.Clauses;
 using Remotion.Linq.Clauses.Expressions;
 using Remotion.Linq.Parsing;
@@ -23,8 +23,7 @@ namespace NHibernate.Linq.GroupJoin
 
 		protected override Expression VisitQuerySourceReference(QuerySourceReferenceExpression expression)
 		{
-			var groupJoinClause = expression.ReferencedQuerySource as GroupJoinClause;
-			if (groupJoinClause != null && _results.AggregatingClauses.Contains(groupJoinClause))
+			if (expression.ReferencedQuerySource is GroupJoinClause groupJoinClause&& _results.AggregatingClauses.Contains(groupJoinClause))
 			{
 				_groupJoin = groupJoinClause;
 			}

@@ -302,9 +302,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private static bool ProjectionListPredicate(IASTNode node)
 		{
-			var fromElement = node as FromElement;
 
-			if (fromElement != null)
+			if (node is FromElement fromElement)
 			{
 				return fromElement.InProjectionList;
 			}
@@ -314,9 +313,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private static bool FromElementPredicate(IASTNode node) 
 		{
-			var fromElement = node as FromElement;
 
-			if (fromElement != null)
+			if (node is FromElement fromElement)
 			{
 				return fromElement.IsFromOrJoinFragment;
 			}
@@ -326,9 +324,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		static bool ExplicitFromPredicate(IASTNode node)
 		{
-			var fromElement = node as FromElement;
 
-			if (fromElement != null)
+			if (node is FromElement fromElement)
 			{
 				return !fromElement.IsImplied;
 			}
@@ -338,9 +335,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private static bool CollectionFetchPredicate(IASTNode node)
 		{
-			var fromElement = node as FromElement;
 
-			if (fromElement != null)
+			if (node is FromElement fromElement)
 			{
 				return fromElement.IsFetch && (fromElement.QueryableCollection != null);
 			}

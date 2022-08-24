@@ -38,8 +38,7 @@ namespace NHibernate.Engine
 
 		public override bool Equals(object obj)
 		{
-			var castedObj = obj as ExecuteUpdateResultCheckStyle;
-			if (castedObj != null)
+			if (obj is ExecuteUpdateResultCheckStyle castedObj)
 			{
 				return name == castedObj.name;
 			}

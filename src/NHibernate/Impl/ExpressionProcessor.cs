@@ -736,8 +736,7 @@ namespace NHibernate.Impl
 
 		private static ICriterion ProcessExpression(Expression expression)
 		{
-			var binaryExpression = expression as BinaryExpression;
-			if (binaryExpression != null)
+			if (expression is BinaryExpression binaryExpression)
 				return ProcessBinaryExpression(binaryExpression);
 			
 			return ProcessBooleanExpression(expression);

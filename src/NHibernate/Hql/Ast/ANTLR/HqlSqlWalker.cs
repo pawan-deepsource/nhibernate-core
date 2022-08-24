@@ -319,9 +319,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 				}
 
 				IASTNode idSelectExprNode = null;
-
-				var seqGenerator = generator as SequenceGenerator;
-				if (seqGenerator != null)
+				if (generator is SequenceGenerator seqGenerator)
 				{
 					string seqName = seqGenerator.GeneratorKey();
 					string nextval = SessionFactoryHelper.Factory.Dialect.GetSelectSequenceNextValString(seqName);

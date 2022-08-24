@@ -123,9 +123,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 		private void BindPrimitiveArray(HbmPrimitiveArray arrayMapping, PrimitiveArray model, string prefix, string path, System.Type containingType, IDictionary<string, MetaAttribute> inheritedMetas)
 		{
 			BindCollection(arrayMapping, model, prefix, path, containingType, inheritedMetas);
-
-			var element = arrayMapping.ElementRelationship as HbmElement;
-			if (element != null)
+			if (arrayMapping.ElementRelationship is HbmElement element)
 			{
 				string typeName;
 				var typeAttribute = element.Type;
@@ -185,9 +183,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 
 			// LAZINESS
 			InitLaziness(collectionMapping, model);
-
-			var oneToManyMapping = collectionMapping.ElementRelationship as HbmOneToMany;
-			if (oneToManyMapping != null)
+			if (collectionMapping.ElementRelationship is HbmOneToMany oneToManyMapping)
 			{
 				var oneToMany = new OneToMany(model.Owner);
 				model.Element = oneToMany;

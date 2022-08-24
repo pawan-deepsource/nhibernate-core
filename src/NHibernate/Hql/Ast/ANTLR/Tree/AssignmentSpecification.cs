@@ -53,9 +53,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 			string propertyPath = lhs.PropertyPath;
 			var temp = new HashSet<string>();
-			// yuck!
-			var usep = persister as UnionSubclassEntityPersister;
-			if (usep != null)
+			if (persister is UnionSubclassEntityPersister usep)
 			{
 				temp.UnionWith(persister.ConstraintOrderedTableNameClosure);
 			}

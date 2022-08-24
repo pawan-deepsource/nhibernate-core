@@ -107,9 +107,7 @@ namespace NHibernate.Linq.GroupBy
 				return false;
 			}
 
-			var subQuery = fromClause.FromExpression as SubQueryExpression;
-
-			if (subQuery != null)
+			if (fromClause.FromExpression is SubQueryExpression subQuery)
 			{
 				return subQuery.QueryModel == _model;
 			}
@@ -123,9 +121,7 @@ namespace NHibernate.Linq.GroupBy
 
 			var querySource = referencedQuery.ReferencedQuerySource as FromClauseBase;
 
-			var subQuery2 = querySource.FromExpression as SubQueryExpression;
-
-			return subQuery2 != null && subQuery2.QueryModel == _model;
+			return querySource.FromExpression is SubQueryExpression subQuery2&& subQuery2.QueryModel == _model;
 		}
 
 		protected override Expression VisitSubQuery(SubQueryExpression expression)

@@ -108,8 +108,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 				DataType = _fromElement.GetPropertyType(propertyName, propertyName);
 				_selectColumns = _fromElement.ToColumns(_fromElement.TableAlias, propertyName, _inSelect);
 			}
-			var dotNode = collectionNode as DotNode;
-			if (dotNode != null)
+			if (collectionNode is DotNode dotNode)
 			{
 				PrepareAnyImplicitJoins(dotNode);
 			}
@@ -157,8 +156,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private static void PrepareAnyImplicitJoins(DotNode dotNode)
 		{
-			var lhs = dotNode.GetLhs() as DotNode;
-			if ( lhs != null )
+			if ( dotNode.GetLhs()is DotNode lhs)
 			{
 				FromElement lhsOrigin = lhs.FromElement;
 				if ( lhsOrigin != null && "" == lhsOrigin.Text )

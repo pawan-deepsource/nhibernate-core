@@ -454,10 +454,7 @@ namespace NHibernate.Impl
 				q.SetCacheMode(cacheMode.Value);
 			foreach (KeyValuePair<string, LockMode> mode in lockModes)
 				q.SetLockMode(mode.Key, mode.Value);
-
-			// Set AbstractQueryImpl property before set parameters
-			var aqi = q as AbstractQueryImpl;
-			if (aqi != null)
+			if (q is AbstractQueryImpl aqi)
 				aqi.SetIgnoreUknownNamedParameters(shouldIgnoredUnknownNamedParameters);
 
 			// Even if the probably that somebody use a mixed technique to set parameters 

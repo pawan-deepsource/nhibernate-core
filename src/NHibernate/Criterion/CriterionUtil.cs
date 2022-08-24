@@ -141,8 +141,7 @@ namespace NHibernate.Criterion
 		                                          params object[] values)
 		{
 			List<TypedValue> types = new List<TypedValue>();
-			var propertyProjection = projection as IPropertyProjection;
-			if (projection == null || propertyProjection != null)
+			if (projection == null || projection is IPropertyProjection propertyProjection)
 			{
 				var pn = propertyProjection != null ? propertyProjection.PropertyName : propertyName;
 				foreach (object value in values)

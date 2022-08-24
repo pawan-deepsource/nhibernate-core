@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Antlr.Runtime;
 using NHibernate.Engine;
 using NHibernate.Type;
@@ -102,15 +102,13 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		private static IType ExtractDataType(IASTNode operand) 
 		{
 			IType type = null;
-			var sqlNode = operand as SqlNode;
-			if ( sqlNode != null ) 
+			if ( operand is SqlNode sqlNode) 
 			{
 				type = sqlNode.DataType;
 			}
 			if (type == null)
 			{
-				var expectedTypeAwareNode = operand as IExpectedTypeAwareNode;
-				if (expectedTypeAwareNode != null)
+				if (operand is IExpectedTypeAwareNode expectedTypeAwareNode)
 				{
 					type = expectedTypeAwareNode.ExpectedType;
 				}
