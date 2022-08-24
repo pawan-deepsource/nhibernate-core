@@ -49,9 +49,7 @@ namespace NHibernate.Exceptions
 				log.Info("Using dialect defined converter");
 				converter = dialect.BuildSQLExceptionConverter();
 			}
-
-			IConfigurable confConv = converter as IConfigurable;
-			if (confConv != null)
+			if (converter is IConfigurable confConv)
 			{
 				try
 				{

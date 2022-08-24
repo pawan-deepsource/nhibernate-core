@@ -41,8 +41,7 @@ namespace NHibernate.Engine
 					object defaultValue = identifierGetter.Get(Instantiate(constructor));
 					return new IdentifierValue(defaultValue);
 				}
-				var idTypeAsPrimitiveType = identifierType as PrimitiveType;
-				if (identifierGetter != null && idTypeAsPrimitiveType != null)
+				if (identifierGetter != null && identifierType is PrimitiveType idTypeAsPrimitiveType)
 				{
 					object defaultValue = idTypeAsPrimitiveType.DefaultValue;
 					return new IdentifierValue(defaultValue);

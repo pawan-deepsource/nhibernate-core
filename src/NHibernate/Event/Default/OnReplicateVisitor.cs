@@ -35,8 +35,7 @@ namespace NHibernate.Event.Default
 			{
 				RemoveCollection(persister, ExtractCollectionKeyFromOwner(persister), session);
 			}
-			IPersistentCollection wrapper = collection as IPersistentCollection;
-			if (wrapper != null)
+			if (collection is IPersistentCollection wrapper)
 			{
 				wrapper.SetCurrentSession(session);
 				if (wrapper.WasInitialized)

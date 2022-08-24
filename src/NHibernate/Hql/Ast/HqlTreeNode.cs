@@ -116,11 +116,9 @@ namespace NHibernate.Hql.Ast
 		[Obsolete]
 		public static HqlBooleanExpression AsBooleanExpression(this HqlTreeNode node)
 		{
-			var hqlDot = node as HqlDot;
-			if (hqlDot != null)
+			if (node is HqlDot hqlDot)
 				return new HqlBooleanDot(hqlDot.Factory, hqlDot);
-			var hqlBooleanExpression = node as HqlBooleanExpression;
-			if (hqlBooleanExpression != null)
+			if (node is HqlBooleanExpression hqlBooleanExpression)
 				return hqlBooleanExpression;
 
 			// TODO - nice error handling if cast fails
@@ -129,11 +127,9 @@ namespace NHibernate.Hql.Ast
 
 		public static HqlBooleanExpression ToBooleanExpression(this HqlTreeNode node)
 		{
-			var hqlDot = node as HqlDot;
-			if (hqlDot != null)
+			if (node is HqlDot hqlDot)
 				return new HqlBooleanDot(hqlDot.Factory, hqlDot);
-			var hqlBooleanExpression = node as HqlBooleanExpression;
-			if (hqlBooleanExpression != null)
+			if (node is HqlBooleanExpression hqlBooleanExpression)
 				return hqlBooleanExpression;
 
 			var builder = new HqlTreeBuilder();
@@ -143,8 +139,7 @@ namespace NHibernate.Hql.Ast
 
 		internal static HqlExpression ToArithmeticExpression(this HqlTreeNode node)
 		{
-			var hqlBooleanExpression = node as HqlBooleanExpression;
-			if (hqlBooleanExpression != null)
+			if (node is HqlBooleanExpression hqlBooleanExpression)
 			{
 				var builder = new HqlTreeBuilder();
 

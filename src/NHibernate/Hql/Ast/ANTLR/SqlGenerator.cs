@@ -358,8 +358,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		private void Skip(IASTNode node)
 		{
 			var queryWriter = (QueryWriter)writer;
-			var pnode = node as ParameterNode;
-			if (pnode != null)
+			if (node is ParameterNode pnode)
 			{
 				queryWriter.SkipParameter = (IPageableParameterSpecification)pnode.HqlParameterSpecification;
 				collectedParameters.Add(pnode.HqlParameterSpecification);
@@ -371,8 +370,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		private void Take(IASTNode node)
 		{
 			var queryWriter = (QueryWriter)writer;
-			var pnode = node as ParameterNode;
-			if (pnode != null)
+			if (node is ParameterNode pnode)
 			{
 				queryWriter.TakeParameter = (IPageableParameterSpecification)pnode.HqlParameterSpecification;
 				collectedParameters.Add(pnode.HqlParameterSpecification);

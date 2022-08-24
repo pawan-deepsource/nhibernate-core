@@ -83,12 +83,9 @@ namespace NHibernate.Linq.NestedSelects
 
 		private static Expression ProcessExpression(QueryModel queryModel, ISessionFactory sessionFactory, Expression expression, List<ExpressionHolder> elementExpression, ParameterExpression @group)
 		{
-			var memberExpression = expression as MemberExpression;
-			if (memberExpression != null)
+			if (expression is MemberExpression memberExpression)
 				return ProcessMemberExpression(sessionFactory, elementExpression, queryModel, @group, memberExpression);
-			
-			var subQueryExpression = expression as SubQueryExpression;
-			if (subQueryExpression != null)
+			if (expression is SubQueryExpression subQueryExpression)
 				return ProcessSubquery(sessionFactory, elementExpression, queryModel, @group, subQueryExpression.QueryModel);
 			
 			return null;

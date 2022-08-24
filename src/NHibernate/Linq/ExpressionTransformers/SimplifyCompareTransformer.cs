@@ -58,8 +58,7 @@ namespace NHibernate.Linq.ExpressionTransformers
 
 		private static bool IsConstantZero(Expression expression)
 		{
-			var constantExpr = expression as ConstantExpression;
-			if (constantExpr != null)
+			if (expression is ConstantExpression constantExpr)
 			{
 				if (constantExpr.Type == typeof(int) && ((int)constantExpr.Value) == 0)
 					return true;
